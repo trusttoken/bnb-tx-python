@@ -1,3 +1,8 @@
+import base64
+
+from .bech32 import bech32_encode, address_bytes
+
+
 """
 base.py
 
@@ -138,7 +143,7 @@ class String(str):
         return super(String, cls).__new__(cls, data)
 
     def encode(self, field_id=None):
-        if self is None or len(self) is 0:
+        if self is None or len(self) == 0:
             return b''
         buf = VarInt(len(self)).encode() + str.encode(self, 'utf8')
         if field_id is None:
@@ -173,7 +178,7 @@ class StringVarInt(String):
 # json as base64 string
 class Bytes(String):
     def encode(self, field_id=None):
-        if self is None or len(self) is 0:
+        if self is None or len(self) == 0:
             return b''
         buf = base64.b64decode(str(self))
         buf = VarInt(len(buf)).encode() + buf
@@ -197,7 +202,7 @@ class Bytes(String):
 # json as bnb1 address
 class Address(String):
     def encode(self, field_id=None):
-        if len(self) is 0:
+        if len(self) == 0:
             return b''
         buf = VarInt(20).encode() + address_bytes(self)
         if field_id is None:

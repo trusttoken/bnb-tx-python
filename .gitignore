@@ -1,6 +1,9 @@
 # Python
 __pycache__
 
+# Packaging
+build/
+
 # VIM
 *.swo
 *.swp

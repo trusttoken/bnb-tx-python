@@ -1,4 +1,4 @@
-from .base import Address, String, VarInt, make_prefix
+from .base import Address, Amino, String, VarInt, make_prefix
 
 
 """
@@ -56,7 +56,6 @@ class DexList(Amino):
         quote_asset_symbol, data = String.decode(data, 4)
         init_price, data = VarInt.decode(data, 5)
         return DexList(from_address, proposal_id, base_asset_symbol, quote_asset_symbol, init_price)
-
 
     def from_msg_obj(list_data):
         return DexList(

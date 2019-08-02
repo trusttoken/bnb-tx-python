@@ -1,4 +1,4 @@
-from .base import Input, Output
+from .base import Address, Amino, Bool, Input, Output, Repeated, String, Token, VarInt, make_prefix
 
 
 """
@@ -75,7 +75,7 @@ class Issue(Amino):
             symbol=String(symbol),
             total_supply=VarInt(total_supply),
             mintable=bool(mintable))
-        self['from'] = from_address
+        self['from'] = Address(from_address)
 
     @staticmethod
     def object_id():
@@ -110,14 +110,13 @@ class Issue(Amino):
         mintable = True if mintable else 0
         return Issue(address, name, symbol, total_supply, mintable), data
 
-
     @staticmethod
     def from_msg_obj(issue_data):
         return Issue(
-            Address(issue_data['from']),
-            String(issue_data['name']),
-            String(issue_data['symbol']),
-            VarInt(issue_data['total_supply']),
+            issue_data['from'],
+            issue_data['name'],
+            issue_data['symbol'],
+            issue_data['total_supply'],
             issue_data['mintable']
         )
 
@@ -156,7 +155,6 @@ class Mint(Amino):
         symbol, data = String.decode(data, 2)
         amount, data = VarInt.decode(data, 3)
         return Mint(from_address, symbol, amount)
-
 
     @staticmethod
     def from_msg_obj(mint_data):
@@ -215,8 +213,12 @@ class Burn(Amino):
 
 class Freeze(Amino):
     def __init__(self, from_address, symbol, amount):
-        dict.__init__(self, amount=amount, symbol=symbol)
-        self['from'] = from_address
+        dict.__init__(
+            self,
+            amount=VarInt(amount),
+            symbol=String(symbol)
+        )
+        self['from'] = Address(from_address)
 
     @staticmethod
     def object_id():
@@ -300,7 +302,6 @@ class TimeLock(Amino):
         )
 
 
-
 class TimeUnlock(Amino):
     def __init__(self, from_address, time_lock_id):
         dict.__init__(
@@ -332,7 +333,8 @@ class TimeUnlock(Amino):
 
 class TimeRelock(Amino):
     def __init__(self, from_address, time_lock_id, description, amount, lock_time):
-        dict.__init__(self,
+        dict.__init__(
+            self,
             time_lock_id=VarInt(time_lock_id),
             description=String(description),
             amount=Repeated(amount),
@@ -362,9 +364,9 @@ class TimeRelock(Amino):
         for amount in timerelock_data['amount']:
             amounts.append(Token(VarInt(amount['amount']), String(amount['denom'])))
         return TimeRelock(
-            timerelock_data['from']),
-            timerelock_data['time_lock_id']),
-            timerelock_data['description']),
-            amounts),
-            timerelock_data['lock_time'])
+            timerelock_data['from'],
+            timerelock_data['time_lock_id'],
+            timerelock_data['description'],
+            amounts,
+            timerelock_data['lock_time']
         )

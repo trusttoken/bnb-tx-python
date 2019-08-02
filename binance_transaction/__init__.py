@@ -1,1 +1,1 @@
-from .bnb_transaction import BnbTransaction, TestBnbTransaction
+name = "binance_transaction"

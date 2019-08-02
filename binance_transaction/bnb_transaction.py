@@ -1,7 +1,12 @@
-from .base import Repeated
+from .base import Repeated, Amino, String, StringVarInt, VarInt
+from .crypto import compress_key, int_to_bytes, int_from_bytes, secp256k1
+from .signature import BnbSignature
+from .msg import Msg
 
 
+import base64
 import hashlib
+import json
 
 
 """
@@ -13,7 +18,11 @@ Higher-level transaction objects
 * TestBnbTransaction
 """
 
-class BnbTransaction(Amino, Tx):
+
+class BnbTransaction(Amino):
+    """
+    Mainnet transaction
+    """
     @staticmethod
     def chain_id():
         return String("Binance-Chain-Tigris")
@@ -52,17 +61,20 @@ class BnbTransaction(Amino, Tx):
 
     def apply_sig(self, signature, public_key):
         assert len(signature) == 64
-        assert len(public_key) == 65
+        if len(public_key) == 65:
+            # compress uncompressed public key
+            public_key = compress_key(public_key)
+        assert len(public_key) == 33
         if int_from_bytes(signature[32:64]) > secp256k1['base'] // 2:
             # Enforce low S (EIP2)
             r = signature[0:32]
             s = int_to_bytes(secp256k1['base'] - int_from_bytes(signature[32:64]), 32)
             signature = r + s
         self['signatures'].append(BnbSignature(
-            Bytes(base64.b64encode(compress_key(public_key)).decode('utf8')),
-            Bytes(base64.b64encode(signature).decode('utf8')),
-            StringVarInt(self['account_number']),
-            StringVarInt(self['sequence'])
+            base64.b64encode(public_key).decode('utf8'),
+            base64.b64encode(signature).decode('utf8'),
+            self['account_number'],
+            self['sequence']
         ))
 
     def remove_sig(self):
@@ -112,10 +124,13 @@ class BnbTransaction(Amino, Tx):
         tx['memo'] = String(transaction_data['memo'])
         for msg in transaction_data['msgs']:
             tx.add_msg(Msg.from_msg_obj(msg))
-        return tx        
+        return tx
 
 
 class TestBnbTransaction(BnbTransaction):
+    """
+    Testnet transaction
+    """
     @staticmethod
     def chain_id():
         return String("Binance-Chain-Nile")

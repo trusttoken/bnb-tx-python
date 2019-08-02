@@ -13,7 +13,6 @@ Msg
 """
 
 
-
 msg_class_by_type = {
     'cosmos-sdk/Send': Send,
     'dex/ListMsg': DexList,
@@ -48,6 +47,7 @@ msg_class_by_object_id = {
     CancelOrder.object_id(): CancelOrder,
     NewOrder.object_id(): NewOrder
 }
+
 
 class Msg(Amino):
     @staticmethod

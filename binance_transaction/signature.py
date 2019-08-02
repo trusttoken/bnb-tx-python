@@ -1,4 +1,4 @@
-from .base import Bytes
+from .base import Amino, Bytes, StringVarInt, VarInt, make_prefix
 
 
 """
@@ -17,7 +17,8 @@ class PubKeySecp256k1(Amino):
 
     @staticmethod
     def object_id():
-        return bytes.fromhex('EB5AE987')  # type: tendermint/PubKeySecp256k1
+        # tendermint/PubKeySecp256k1
+        return bytes.fromhex('EB5AE987')
 
     def encode(self, field_id=None):
         buf = self.object_id()
@@ -46,8 +47,8 @@ class BnbSignature(Amino):
             self,
             pub_key=PubKeySecp256k1(pub_key),
             signature=Bytes(signature),
-            account_number=account_number,
-            sequence=sequence
+            account_number=StringVarInt(account_number),
+            sequence=StringVarInt(sequence)
         )
 
     def encode(self, field_id):

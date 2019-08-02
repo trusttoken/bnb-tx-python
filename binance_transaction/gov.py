@@ -1,4 +1,4 @@
-from .base import Repeated, String, Address, StringVarInt
+from .base import Amino, Repeated, String, Address, StringVarInt, StringToken, Token, VarInt, make_prefix
 
 
 """
@@ -24,12 +24,12 @@ class Proposal(Amino):
     def __init__(self, title, description, proposal_type, proposer, initial_deposit, voting_period):
         dict.__init__(
             self,
-            title=title,
-            description=description,
-            proposal_type=proposal_type,
-            proposer=proposer,
+            title=String(title),
+            description=String(description),
+            proposal_type=String(proposal_type),
+            proposer=Address(proposer),
             initial_deposit=initial_deposit,
-            voting_period=voting_period
+            voting_period=StringVarInt(voting_period)
         )
 
     @staticmethod
@@ -67,20 +67,27 @@ class Proposal(Amino):
         voting_period, data = StringVarInt.decode(data, 6)
         return Proposal(title, description, proposal_type, proposer, initial_deposit, voting_period)
 
-
     @staticmethod
     def from_msg_obj(proposal_data):
         initial_deposit = Repeated([])
         for deposit in proposal_data['initial_deposit']:
             initial_deposit.append(StringToken(deposit['amount'], deposit['denom'])),
         return Proposal(
-            String(proposal_data['title']),
-            String(proposal_data['description']),
-            String(proposal_data['proposal_type']),
-            Address(proposal_data['proposer']),
+            proposal_data['title'],
+            proposal_data['description'],
+            proposal_data['proposal_type'],
+            proposal_data['proposer'],
             initial_deposit,
-            StringVarInt(proposal_data['voting_period'])
+            proposal_data['voting_period']
         )
+
+
+vote_option_to_varint = {
+    "Yes": VarInt(1),
+    "Abstain": VarInt(2),
+    "No": VarInt(3),
+    "NoWithVeto": VarInt(4)
+}
 
 
 class VoteOption(String):
