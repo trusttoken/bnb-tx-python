@@ -4,14 +4,19 @@ Start by cloning the repository.
 git clone git@github.com:trusttoken/bnb-tx-python.git
 ```
 
-Install dependencies
+### Install dependencies
 ```
-pipenv install
+pipenv install --dev
 ```
 
-Run flake8
+### Run flake8
 ```
 pipenv run flake8
+```
+
+### Run tests
+```
+pipenv run ./runtests.py
 ```
 
 # Pull Requests

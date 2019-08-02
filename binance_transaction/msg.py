@@ -1,7 +1,7 @@
-from .base import Amino, make_prefix
-from .token import Send, Issue, Mint, Burn, Freeze, Unfreeze, TimeLock, TimeRelock, TimeUnlock
-from .gov import Proposal, Vote
-from .dex import DexList, NewOrder, CancelOrder
+from binance_transaction.base import Amino, make_prefix
+from binance_transaction.token import Send, Issue, Mint, Burn, Freeze, Unfreeze, TimeLock, TimeRelock, TimeUnlock
+from binance_transaction.gov import Proposal, Vote
+from binance_transaction.dex import DexList, NewOrder, CancelOrder
 
 
 """
@@ -58,5 +58,5 @@ class Msg(Amino):
 
     @staticmethod
     def from_msg_obj(msg_obj):
-        msg_klass = msg_class_by_type(msg_obj['type'])
+        msg_klass = msg_class_by_type[msg_obj['type']]
         return msg_klass.from_msg_obj(msg_obj)

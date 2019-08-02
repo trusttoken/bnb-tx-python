@@ -15,7 +15,7 @@ def test_new_order():
         '64AC1240CF4D2BE853D8EBA348353A91ED3BCF2C0164004DAF898153444E91E4A2BAC02106E4D1B3686D70F2B756274D90BF'
         '120BA87A3CCC412E1D20618CAB480CE69A5718C7A00420072002'
     )
-    assert hashlib.sha256(valid_tx) == valid_tx_hash
+    assert hashlib.sha256(valid_tx).digest() == valid_tx_hash
     from_address = 'bnb1pyt4vhpv0nq8d9jrt5fmgz6r303cltwxu27xn2'
     tx = BnbTransaction.from_obj({
         'account_number': 69703,
@@ -61,7 +61,7 @@ def test_cancel_order():
         '788A7054E48DCA0CB5AEC745467F19AAA46120236C3220D65E2C2801184773DC4E32EE8F33CE87DC13951E5818723CC60318'
         '98910920022001'
     )
-    assert hashlib.sha256(valid_tx) == valid_tx_hash
+    assert hashlib.sha256(valid_tx).digest() == valid_tx_hash
     from_address = 'bnb1j9tnf0vq2rj65qle6ptwes0kjh5xejdle3fpuj'
     tx = BnbTransaction.from_obj({
         'account_number': 149656,

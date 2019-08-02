@@ -1,7 +1,7 @@
-from .base import Repeated, Amino, String, StringVarInt, VarInt
-from .crypto import compress_key, int_to_bytes, int_from_bytes, secp256k1
-from .signature import BnbSignature
-from .msg import Msg
+from binance_transaction.base import Repeated, Amino, String, StringVarInt, VarInt
+from binance_transaction.crypto import compress_key, int_to_bytes, int_from_bytes, secp256k1
+from binance_transaction.signature import BnbSignature
+from binance_transaction.msg import Msg
 
 
 import base64

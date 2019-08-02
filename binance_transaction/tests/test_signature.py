@@ -1,7 +1,7 @@
 import base64
 
-from .signature import PubKeySecp256k1
-from .base import Bytes
+from binance_transaction.signature import PubKeySecp256k1
+from binance_transaction.base import Bytes
 
 
 def test_pubkey_encoding():

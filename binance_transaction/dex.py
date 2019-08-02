@@ -1,4 +1,4 @@
-from .base import Address, Amino, String, VarInt, make_prefix
+from binance_transaction.base import Address, Amino, String, VarInt, make_prefix
 
 
 """

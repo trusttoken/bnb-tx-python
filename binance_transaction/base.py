@@ -1,6 +1,6 @@
 import base64
 
-from .bech32 import bech32_encode, address_bytes
+from binance_transaction.bech32 import bech32_encode, address_bytes
 
 
 """

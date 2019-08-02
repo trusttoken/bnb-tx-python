@@ -1,4 +1,4 @@
-from .base import Amino, Bytes, StringVarInt, VarInt, make_prefix
+from binance_transaction.base import Amino, Bytes, StringVarInt, VarInt, make_prefix
 
 
 """

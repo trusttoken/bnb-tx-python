@@ -1,2 +1,2 @@
-class UnsupportedBNBMessage(Exception):
+class UnsupportedBnbMessage(Exception):
     pass

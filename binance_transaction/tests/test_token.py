@@ -1,8 +1,8 @@
 import base64
 import hashlib
 
-from .bnb_transaction import BnbTransaction, TestBnbTransaction
-from .crypto import uncompress_key, verify_sig
+from binance_transaction.bnb_transaction import BnbTransaction, TestBnbTransaction
+from binance_transaction.crypto import uncompress_key, verify_sig
 
 
 def test_send_signed_encoding():
