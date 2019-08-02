@@ -1,0 +1,2 @@
+class UnsupportedBNBMessage(Exception):
+    pass
