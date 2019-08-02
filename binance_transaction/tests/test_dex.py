@@ -2,8 +2,8 @@ import base64
 import hashlib
 
 
-from .bnb_transaction import BnbTransaction
-from .crypto import uncompress_key, verify_sig
+from binance_transaction.bnb_transaction import BnbTransaction
+from binance_transaction.crypto import uncompress_key, verify_sig
 
 
 def test_new_order():

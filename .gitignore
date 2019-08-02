@@ -3,6 +3,10 @@ __pycache__
 
 # Packaging
 build/
+dist/
+
+# Pipenv
+.venv
 
 # VIM
 *.swo

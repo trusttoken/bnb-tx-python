@@ -1,8 +1,8 @@
 import base64
 import hashlib
 
-from .bnb_transaction import BnbTransaction
-from .crypto import verify_sig, uncompress_key
+from binance_transaction.bnb_transaction import BnbTransaction
+from binance_transaction.crypto import verify_sig, uncompress_key
 
 
 def test_vote_encoding():

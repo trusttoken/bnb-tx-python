@@ -1,4 +1,4 @@
-from .base import Bool, Bytes, String, StringVarInt, VarInt
+from binance_transaction.base import Bool, Bytes, String, StringVarInt, VarInt
 
 
 import base64
