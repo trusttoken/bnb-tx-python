@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="binance_transaction",
+    name="binance-transaction",
     version="0.0.3",
     author="William Morriss",
     author_email="wjmelements@gmail.com",

@@ -3,12 +3,12 @@ This library provides a low-level interface for interacting with different Binan
 
 ## Installation
 ```sh
-pip3 install binance_transaction
+pip3 install binance-transaction
 ```
 
 Or, in your `Pipfile`:
 ```
-binance_transaction = "==0.0.3"
+binance-transaction = "==0.0.3"
 ```
 
 
