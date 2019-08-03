@@ -2,7 +2,15 @@
 This library provides a low-level interface for interacting with different Binance Chain transactions.
 
 ## Installation
-TODO
+```sh
+pip3 install binance\_transaction
+```
+
+Or, in your `Pipfile`:
+```
+binance_transaction = "==0.0.3"
+```
+
 
 ## Usage
 The following is an example that uses the `ecdsa` library to sign.
