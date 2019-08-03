@@ -27,7 +27,7 @@ class BnbTransaction(Amino):
     def chain_id():
         return String("Binance-Chain-Tigris")
 
-    def __init__(self, account_number, sequence, source):
+    def __init__(self, account_number, sequence, source='887'):
         dict.__init__(
             self,
             account_number=StringVarInt(account_number),

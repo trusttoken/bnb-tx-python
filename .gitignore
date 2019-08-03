@@ -4,6 +4,7 @@ __pycache__
 # Packaging
 build/
 dist/
+*.egg-info
 
 # Pipenv
 .venv

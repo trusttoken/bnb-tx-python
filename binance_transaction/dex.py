@@ -14,6 +14,18 @@ CancelOrder
 """
 
 
+# side
+BUY = 1
+SELL = 2
+
+# timeinforce
+GTE = 1
+IOC = 3
+
+# ordertype
+LIMIT_ORDER = 2
+
+
 class DexList(Amino):
     def __init__(self, from_address, proposal_id, base_asset_symbol, quote_asset_symbol, init_price):
         dict.__init__(

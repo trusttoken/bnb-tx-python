@@ -1,4 +1,6 @@
-from binance_transaction.base import Amino, Repeated, String, Address, StringVarInt, StringToken, Token, VarInt, make_prefix
+from binance_transaction.base import (
+    Amino, Repeated, String, Address, StringVarInt, StringToken, Token, VarInt, make_prefix
+)
 
 
 """
@@ -8,6 +10,7 @@ Message types regarding Binance Chain governance
 Their message type usually starts with cosmos-sdk/*
 
 * Proposal (cosmos-sdk/MsgSubmitProposal)
+* Vote
 """
 
 

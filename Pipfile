@@ -6,7 +6,7 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "~=4.0"
-flake8 = "==3.6"
+flake8 = "==3.7"
 
 
 [packages]
