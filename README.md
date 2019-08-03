@@ -3,7 +3,7 @@ This library provides a low-level interface for interacting with different Binan
 
 ## Installation
 ```sh
-pip3 install binance\_transaction
+pip3 install binance_transaction
 ```
 
 Or, in your `Pipfile`:
