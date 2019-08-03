@@ -3,12 +3,12 @@ This library provides a low-level interface for interacting with different Binan
 
 ## Installation
 ```sh
-pip3 install binance-transaction
+pip3 install bnb-tx
 ```
 
 Or, in your `Pipfile`:
 ```
-binance-transaction = "==0.0.3"
+bnb-tx = "==0.0.4"
 ```
 
 
@@ -72,4 +72,4 @@ See [CONTRIBUTING](CONTRIBUTING.md).
 
 
 ## License
-LGPL3
+LGPLv3
